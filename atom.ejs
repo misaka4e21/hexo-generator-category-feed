@@ -24,6 +24,7 @@
     <summary type="html">
     <% if (post.description){ %><%-: post.description | cdata %>
     <% } else if (post.excerpt){ %><%-: post.excerpt | cdata %>
+    <% } else if (config.category_feed.content){ %><%-: post.content | cdata %>
     <% } else {%><%-: post.content.substring(0, 140) | cdata %><% } %>
     </summary>
     <% [].concat(post.tags.toArray(), post.categories.toArray()).forEach(function(category){ %>

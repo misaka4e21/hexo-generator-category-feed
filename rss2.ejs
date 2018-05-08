@@ -18,6 +18,7 @@
       <description>
       <% if (post.description){ %><%-: post.description | cdata %>
       <% } else if (post.excerpt){ %><%-: post.excerpt | cdata %>
+      <% } else if (config.content){ %><%-: post.content | cdata %>
       <% } else {%><%-: post.content.substring(0, 140) | cdata %><% } %>
       </description>
       <content:encoded><%-: post.content | cdata %></content:encoded>
