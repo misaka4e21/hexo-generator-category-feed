@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><%-: cdata(config.title) %></title>
-  <% if (config.subtitle){ %><subtitle><%-: cdata(config.subtitle) %></subtitle><% } %>
+  <title><%- cdata(config.title) %></title>
+  <% if (config.subtitle){ %><subtitle><%- cdata(config.subtitle) %></subtitle><% } %>
   <link href="<%- encodeURI(feed_url) %>" rel="self"/>
   <link href="<%- encodeURI(config.url) %>/"/>
   <updated><%= posts[0].updated.toISOString() %></updated>
   <id><%- config.url %>/</id>
   <% if (config.author){ %>
   <author>
-    <name><%-: cdata(config.author) %></name>
-    <% if (config.email){ %><email><%-: cdata(config.email) %></email><% } %>
+    <name><%- cdata(config.author) %></name>
+    <% if (config.email){ %><email><%- cdata(config.email) %></email><% } %>
   </author>
   <% } %>
   <generator uri="http://hexo.io/">Hexo</generator>
   <% posts.forEach(function(post){ %>
   <entry>
-    <title><%-: cdata(post.title) %></title>
+    <title><%- cdata(post.title) %></title>
     <link href="<%- encodeURI(post.permalink) %>"/>
     <id><%- post.permalink %></id>
     <published><%= post.date.toISOString() %></published>
     <updated><%= post.updated.toISOString() %></updated>
-    <content type="html"><%-: cdata(post.content) %></content>
+    <content type="html"><%- cdata(post.content) %></content>
     <summary type="html">
-    <% if (post.description){ %><%-: cdata(post.description) %>
-    <% } else if (post.excerpt){ %><%-: cdata(post.excerpt) %>
-    <% } else if (config.category_feed.content){ %><%-: cdata(post.content) %>
-    <% } else {%><%-: cdata(post.content.substring(0, 140)) %><% } %>
+    <% if (post.description){ %><%- cdata(post.description) %>
+    <% } else if (post.excerpt){ %><%- cdata(post.excerpt) %>
+    <% } else if (config.category_feed.content){ %><%- cdata(post.content) %>
+    <% } else {%><%- cdata(post.content.substring(0, 140)) %><% } %>
     </summary>
     <% [].concat(post.tags.toArray(), post.categories.toArray()).forEach(function(category){ %>
       <category term="<%= category.name %>" scheme="<%- encodeURI(category.permalink) %>"/>
