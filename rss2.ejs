@@ -3,25 +3,25 @@
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title><%-: config.title | cdata %></title>
+    <title><%-: cdata(config.title) %></title>
     <link><%- encodeURI(config.url) %>/</link>
     <atom:link href="<%- encodeURI(feed_url) %>" rel="self" type="application/rss+xml"/>
-    <description><%-: config.description | cdata %></description>
+    <description><%-: cdata(config.description) %></description>
     <pubDate><%= posts[0].updated.toISOString() %></pubDate>
     <generator>http://zespia.tw/hexo/</generator>
     <% posts.forEach(function(post){ %>
     <item>
-      <title><%-: post.title | cdata %></title>
+      <title><%-: cdata(post.title) %></title>
       <link><%- encodeURI(post.permalink) %></link>
       <guid><%- encodeURI(post.permalink) %></guid>
       <pubDate><%= post.date.toDate().toUTCString() %></pubDate>
       <description>
-      <% if (post.description){ %><%-: post.description | cdata %>
-      <% } else if (post.excerpt){ %><%-: post.excerpt | cdata %>
-      <% } else if (config.content){ %><%-: post.content | cdata %>
-      <% } else {%><%-: post.content.substring(0, 140) | cdata %><% } %>
+      <% if (post.description){ %><%-: cdata(post.description) %>
+      <% } else if (post.excerpt){ %><%-: cdata(post.excerpt) %>
+      <% } else if (config.content){ %><%-: cdata(post.content)%>
+      <% } else {%><%-: cdata(post.content.substring(0, 140)) %><% } %>
       </description>
-      <content:encoded><%-: post.content | cdata %></content:encoded>
+      <content:encoded><%-: cdata(post.content) %></content:encoded>
       <% if (post.comments){ %><comments><%- encodeURI(post.permalink) %>#disqus_comments</comments><% } %>
     </item>
     <% }) %>
