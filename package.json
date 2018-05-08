@@ -1,6 +1,6 @@
 {
   "name": "hexo-generator-category-feed",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Module to produce the feed of each category.",
   "main": "index.js",
   "scripts": {
